@@ -4,6 +4,7 @@ from .forms import LoginForm
 
 # index view function suppressed for brevity
 
+'''
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -13,3 +14,9 @@ def login():
     return render_template('login.html',
         title = 'Sign In',
         form = form)
+'''
+
+@app.route('/upload')
+def upload():
+    return render_template('upload.html')
+    

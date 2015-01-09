@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Aging</title>
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link rel="stylesheet" href="{{url_for('static', filename='font-awesome.min.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='combined.min.css')}}" />
+
+		<script src="{{url_for('static', filename='combined.min.js')}}"></script>
+
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-25923300-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+
+		</script>
+
+	</head>
+	<body>
+		<header id="header">
+
+			<div id="nav" class="wrap">
+				<div class="navigation-toggle navigation-toggle-black" data-tools="navigation-toggle" data-target="#navbar">
+					<span>Imperavi</span>
+				</div>
+				<div id="logo">
+					<a href="/">Imperavi</a>
+				</div>
+				<div id="navbar">
+					<nav class="navbar">
+						<ul>
+							<li>
+								<a href="/redactor/">Redactor</a>
+							</li>
+							<li>
+								<b><a href="/kube/">Kube</a></b>
+							</li>
+							<li>
+								<a href="/support/">Support</a>
+							</li>
+							<li>
+								<a href="/about/">About Us</a>
+							</li>
+							<li>
+								<a href="/blog/">Blog</a>
+							</li>
+						</ul>
+					</nav>
+					<ul id="user-area">
+						<li>
+							<a href="/login/">Client account</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</header>
+
+		<div id="main">
+
+			<nav id="sub-nav">
+				<h2><a href="/kube/">Kube</a></h2>
+			</nav>
+
+			<div class="units-row">
+				<div class="units-75">
+					<h1 id="head">Upload</h1>
+
+					<h4>Drag and drop made easy</h4>
+					<p>
+						Instantly add drag and drop for file uploads with simple file input.
+					</p>
+
+					<script>
+						$(function() {
+							$('#file').on('success.tools.upload', function(json) {
+								console.log(this, json);
+							});
+						});
+					</script>
+					<p>
+						<input type="file" name="file" id="file" data-tools="upload" data-url="/tests/kube/upload.php">
+					</p>
+					<pre class="prettyprint linenums">
+&lt;input type=&quot;file&quot; name=&quot;file&quot; data-tools=&quot;upload&quot; data-url=&quot;/upload.php&quot;&gt;
+</pre>
+
+					<p>
+						In a file handler output JSON with a link to a file, for example, for PHP:
+					</p>
+					<pre class="prettyprint linenums">
+echo json_encode(array('file' =&gt; 'http://site.com/files/my-file'));
+</pre>					
+
+ <br>
+					<h4 id="tools-contents-settings">Settings</h4>
+					<br>
+					<h4 id="tools-contents-callbacks">Callbacks</h4>
+
+					<table class="table-bordered width-100">
+						<thead>
+							<tr>
+								<td>Name</td>
+								<td class="width-100">Example</td>
+							</tr>
+						</thead>
+						<tr>
+							<td class="nowrap">success</td>
+							<td>							<pre class="prettyprint">
+&lt;script&gt;
+$(function()
+{
+    $('#file').on('success.tools.upload', function(json)
+    {
+        console.log(json);
+    });
+});
+&lt;/script&gt;
+</pre></td>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+		</div>
+
+		<footer id="footer">
+			<nav class="navbar navbar-right">
+				<ul>
+					<li>
+						<a href="/support/">Support</a>
+					</li>
+					<li>
+						<a href="/about/">About Us</a>
+					</li>
+					<li>
+						<a href="http://weibo.com/sysuwuxuef">Follow me on weibo</a>
+					</li>
+				</ul>
+			</nav>
+			<p>
+				&copy; wuxuefeng 2014-2015
+			</p>
+		</footer>
+
+		<!-- Yandex.Metrika counter -->
+		<div style="display:none;">
+			<script type="text/javascript">
+				(function(w, c) {
+					(w[c] = w[c] || []).push(function() {
+						try {
+							w.yaCounter1067719 = new Ya.Metrika({
+								id : 1067719,
+								accurateTrackBounce : true
+							});
+						} catch(e) {
+						}
+					});
+				})(window, "yandex_metrika_callbacks");
+			</script>
+		</div><script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+		<noscript>
+			<div><img src="//mc.yandex.ru/watch/1067719" style="position:absolute; left:-9999px;" alt="" />
+			</div>
+		</noscript><!-- /Yandex.Metrika counter -->
+
+		<!--
+		<script type="text/javascript">
+		var __jet_config = { uid:3, domain:"imperavi.com" };
+		(function() {
+		var t   = document.createElement('script');
+		t.type  = 'text/javascript';
+		t.src = '//jet.imperavi.com/jet.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(t, s);
+		})();
+		</script>
+		-->
+	</body>
+</html>

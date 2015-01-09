@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Aging</title>
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link rel="stylesheet" href="font-awesome.min.css">
+		<link rel="stylesheet" href="combined.min.css" />
+
+		<script src="combined.min.js"></script>
+	</head>
+	<body>
+		<header id="header">
+
+			<div id="nav" class="wrap">
+				<div class="navigation-toggle navigation-toggle-black" data-tools="navigation-toggle" data-target="#navbar">
+					<span>Aging Face</span>
+				</div>
+				<div id="logo">
+					<a href="/">Aging Face</a>
+				</div>
+				<div id="navbar">
+					<nav class="navbar">
+						<ul>
+							<li>
+								<a href="/redactor/">Redactor</a>
+							</li>
+							<li>
+								<b><a href="/kube/">Kube</a></b>
+							</li>
+							<li>
+								<a href="/support/">Support</a>
+							</li>
+							<li>
+								<a href="/about/">About Us</a>
+							</li>
+							<li>
+								<a href="/blog/">Blog</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+
+		</header>
+
+		<div id="main">
+
+			<nav id="sub-nav">
+				<h2><a href="/aging">Aging Face</a></h2>
+			</nav>
+
+			<div class="units-row">
+					<h1 id="head">Upload</h1>
+
+					<h4>Drag and drop or Choose file and upload</h4>
+					<br />
+					<script>
+						$(function() {
+							var url = 
+							$('#file').on('success.tools.upload', function(json) {
+								console.log(this, json);
+							});
+						});
+					</script>
+					<p>
+						<input type="file" name="file" id="file" data-tools="upload" data-url="/tests/kube/upload.php">
+					</p>					
+			</div>
+		</div>
+
+		<footer id="footer">
+			<nav class="navbar navbar-right">
+				<ul>
+					<li>
+						<a href="/support/">Support</a>
+					</li>
+					<li>
+						<a href="/about/">About Us</a>
+					</li>
+					<li>
+						<a href="http://weibo.com/sysuwuxuef">Follow me on weibo</a>
+					</li>
+				</ul>
+			</nav>
+			<p>
+				&copy; wuxuefeng 2014-2015
+			</p>
+		</footer>
+	</body>
+</html>
