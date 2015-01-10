@@ -10,33 +10,18 @@
 		<link rel="stylesheet" href="{{url_for('static', filename='combined.min.css')}}" />
 
 		<script src="{{url_for('static', filename='combined.min.js')}}"></script>
-
-		<script type="text/javascript">
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-25923300-1']);
-			_gaq.push(['_trackPageview']);
-
-			(function() {
-				var ga = document.createElement('script');
-				ga.type = 'text/javascript';
-				ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(ga, s);
-			})();
-
-		</script>
-
+		<script src="{{url_for('static', filename='upload.js')}}"></script>
+		
 	</head>
 	<body>
 		<header id="header">
 
 			<div id="nav" class="wrap">
 				<div class="navigation-toggle navigation-toggle-black" data-tools="navigation-toggle" data-target="#navbar">
-					<span>Imperavi</span>
+					<span>Aging Face</span>
 				</div>
 				<div id="logo">
-					<a href="/">Imperavi</a>
+					<a href="/">Aging Face</a>
 				</div>
 				<div id="navbar">
 					<nav class="navbar">
@@ -58,11 +43,6 @@
 							</li>
 						</ul>
 					</nav>
-					<ul id="user-area">
-						<li>
-							<a href="/login/">Client account</a>
-						</li>
-					</ul>
 				</div>
 			</div>
 
@@ -71,68 +51,25 @@
 		<div id="main">
 
 			<nav id="sub-nav">
-				<h2><a href="/kube/">Kube</a></h2>
+				<h2><a href="/aging">Aging Face</a></h2>
 			</nav>
 
 			<div class="units-row">
-				<div class="units-75">
 					<h1 id="head">Upload</h1>
 
-					<h4>Drag and drop made easy</h4>
-					<p>
-						Instantly add drag and drop for file uploads with simple file input.
+					<h4>Drag and drop or Choose file and upload</h4>
+					<br />										
+					<p id="uploadArea">
+						<input type="file" name="file" id="file" data-tools="upload" data-url="" />
 					</p>
-
-					<script>
-						$(function() {
-							$('#file').on('success.tools.upload', function(json) {
-								console.log(this, json);
-							});
-						});
-					</script>
-					<p>
-						<input type="file" name="file" id="file" data-tools="upload" data-url="/tests/kube/upload.php">
-					</p>
-					<pre class="prettyprint linenums">
-&lt;input type=&quot;file&quot; name=&quot;file&quot; data-tools=&quot;upload&quot; data-url=&quot;/upload.php&quot;&gt;
-</pre>
-
-					<p>
-						In a file handler output JSON with a link to a file, for example, for PHP:
-					</p>
-					<pre class="prettyprint linenums">
-echo json_encode(array('file' =&gt; 'http://site.com/files/my-file'));
-</pre>					
-
- <br>
-					<h4 id="tools-contents-settings">Settings</h4>
-					<br>
-					<h4 id="tools-contents-callbacks">Callbacks</h4>
-
-					<table class="table-bordered width-100">
-						<thead>
-							<tr>
-								<td>Name</td>
-								<td class="width-100">Example</td>
-							</tr>
-						</thead>
-						<tr>
-							<td class="nowrap">success</td>
-							<td>							<pre class="prettyprint">
-&lt;script&gt;
-$(function()
-{
-    $('#file').on('success.tools.upload', function(json)
-    {
-        console.log(json);
-    });
-});
-&lt;/script&gt;
-</pre></td>
-						</tr>
-					</table>
-
-				</div>
+					<div id="mainArea">
+						<div class="unit-60">
+							<img src="" alt="Upload Image" />
+						</div>
+						<div class="unit-40">
+							<img src="" alt="" />
+						</div>
+					</div>					
 			</div>
 		</div>
 
@@ -154,39 +91,5 @@ $(function()
 				&copy; wuxuefeng 2014-2015
 			</p>
 		</footer>
-
-		<!-- Yandex.Metrika counter -->
-		<div style="display:none;">
-			<script type="text/javascript">
-				(function(w, c) {
-					(w[c] = w[c] || []).push(function() {
-						try {
-							w.yaCounter1067719 = new Ya.Metrika({
-								id : 1067719,
-								accurateTrackBounce : true
-							});
-						} catch(e) {
-						}
-					});
-				})(window, "yandex_metrika_callbacks");
-			</script>
-		</div><script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
-		<noscript>
-			<div><img src="//mc.yandex.ru/watch/1067719" style="position:absolute; left:-9999px;" alt="" />
-			</div>
-		</noscript><!-- /Yandex.Metrika counter -->
-
-		<!--
-		<script type="text/javascript">
-		var __jet_config = { uid:3, domain:"imperavi.com" };
-		(function() {
-		var t   = document.createElement('script');
-		t.type  = 'text/javascript';
-		t.src = '//jet.imperavi.com/jet.js';
-		var s = document.getElementsByTagName('script')[0];
-		s.parentNode.insertBefore(t, s);
-		})();
-		</script>
-		-->
 	</body>
 </html>
