@@ -8,10 +8,10 @@
 
 		<link rel="stylesheet" href="{{url_for('static', filename='font-awesome.min.css')}}">
 		<link rel="stylesheet" href="{{url_for('static', filename='combined.min.css')}}" />
-
+		<link rel="stylesheet" href="{{url_for('static', filename='upload.css')}}" />
 		<script src="{{url_for('static', filename='combined.min.js')}}"></script>
 		<script src="{{url_for('static', filename='upload.js')}}"></script>
-		
+		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 	</head>
 	<body>
 		<header id="header">
@@ -54,23 +54,32 @@
 				<h2><a href="/aging">Aging Face</a></h2>
 			</nav>
 
-			<div class="units-row">
-					<h1 id="head">Upload</h1>
+			<div class="units-row" id="uploadArea">
+					<h1>Upload</h1>
 
 					<h4>Drag and drop or Choose file and upload</h4>
 					<br />										
-					<p id="uploadArea">
+					<p>
 						<input type="file" name="file" id="file" data-tools="upload" data-url="" />
-					</p>
-					<div id="mainArea">
-						<div class="unit-60">
-							<img src="" alt="Upload Image" />
-						</div>
-						<div class="unit-40">
-							<img src="" alt="" />
-						</div>
-					</div>					
+					</p>				
 			</div>
+			
+			<div class="units-row" id="showArea">
+					<h1>Show</h1>
+
+					<h4>Adjust Points to the Appropriate Location</h4>
+					<br />		
+					<div id="imgArea">								
+						<img id="uploadFace" src="" alt="face" />
+					</div>
+					<br /> <br />
+					<form class="forms forms-inline">
+						<input type="text" id="curAge" name="cur-age" placeholder="inputed face age" class="input-big width-20" size="2" />
+						<input type="text" id="forecastAge" name="forecast-age" placeholder="forecast face age" class="input-big width-20" size="2" />
+						<button class="btn btn-big" id="Aging">Aging</button>
+					</form>				
+			</div>
+			
 		</div>
 
 		<footer id="footer">

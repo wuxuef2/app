@@ -6,11 +6,11 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<link rel="stylesheet" href="{{url_for('static', filename='font-awesome.min.css')}}">
-		<link rel="stylesheet" href="{{url_for('static', filename='combined.min.css')}}" />
+		<link rel="stylesheet" href="font-awesome.min.css">
+		<link rel="stylesheet" href="combined.min.css" />
 
-		<script src="{{url_for('static', filename='combined.min.js')}}"></script>
-
+		<script src="combined.min.js"></script>
+		<script src="upload.js"></script>
 		
 	</head>
 	<body>
@@ -54,22 +54,27 @@
 				<h2><a href="/aging">Aging Face</a></h2>
 			</nav>
 
-			<div class="units-row">
-					<h1 id="head">Upload</h1>
+			<div class="units-row" id="uploadArea">
+					<h1>Upload</h1>
 
 					<h4>Drag and drop or Choose file and upload</h4>
-					<br />
-					<script>
-						$(function() {
-							var url = 
-							$('#file').on('success.tools.upload', function(json) {
-								console.log(this, json);
-							});
-						});
-					</script>
+					<br />										
 					<p>
-						<input type="file" name="file" id="file" data-tools="upload" data-url="/tests/kube/upload.php">
-					</p>					
+						<input type="file" name="file" id="file" data-tools="upload" data-url="" />
+					</p>				
+			</div>
+			
+			<div class="units-row" id="showArea">
+					<h1>Show</h1>
+
+					<h4>Adjust Points to the Appropriate Location</h4>
+					<br />										
+					<img src="" alt="face" />
+					<form class="forms forms-inline">
+						<input type="text" id="curAge" name="cur-age" placeholder="inputed face age" class="input-big width-20" size="2" />
+						<input type="text" id="forecastAge" name="forecast-age" placeholder="forecast face age" class="input-big width-20" size="2" />
+						<button class="btn btn-big" id="Aging">Aging</button>
+					</form>				
 			</div>
 		</div>
 
