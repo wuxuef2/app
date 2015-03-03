@@ -7,6 +7,9 @@ from flask import json, jsonify
 from werkzeug import secure_filename
 import random
 from PIL import Image
+import cv2
+import numpy as np
+import ctypes
 
 # index view function suppressed for brevity
 
@@ -32,6 +35,7 @@ def allowed_file(filename):
 def index():
     if request.method == 'POST':
         file = request.files['file']
+        #curAge = request.files['curAge']
                 
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
@@ -40,22 +44,25 @@ def index():
             
             width = img.size[0]
             height = img.size[1]
-            
-            pointX = []
-            for i in range(0, 68):
-                pointX.append(random.randint(0, width))
-                
+            pdll = ctypes.CDLL("./wuxuef.so")
+            pdll.getShape.restype = ctypes.POINTER(ctypes.c_double * 136)
+            points = []
+            points = pdll.getShape("input.jpg", "1").contents
+            print (len(points))
+            print points[0:136]
+            pointX = []     
             pointY = []
+                         
             for i in range(0, 68):
-                pointY.append(random.randint(0, height))
-            
-            
-            
+                pointX[i] = points[i * 2]
+                pointY[i] = points[i * 2 + 1]          
+
             return jsonify(path = filename, 
-                           width = img.size[0], 
-                           height = img.size[1],
-                           pointX = pointX,
-                           pointY = pointY,
-                           pointSize = 68)
+                            width = img.size[0], 
+                            height = img.size[1],
+                            pointX = pointX,
+                            pointY = pointY,
+                            pointSize = 68)
+            
     return render_template('upload.html')
     
