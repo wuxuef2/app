@@ -7,23 +7,9 @@ from flask import json, jsonify
 from werkzeug import secure_filename
 import random
 from PIL import Image
-import cv2
-import numpy as np
 import ctypes
 
 # index view function suppressed for brevity
-
-'''
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        flash('Login requested for OpenID="' + form.openid.data + '", remember_me=' + str(form.remember_me.data))
-        return redirect('/index')
-    return render_template('login.html',
-        title = 'Sign In',
-        form = form)
-'''
 
 ALLOWED_EXTENSIONS = set(['bmp', 'BMP', 'tif', 'TIF', 'tiff', 'TIFF', 'png', 'PNG', 'jpg', 'JPG', 'jpeg', 'JPEG', 'gif', 'GIF'])
 
@@ -40,22 +26,24 @@ def index():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            img = Image.open(app.config['UPLOAD_FOLDER'] + '/' + filename)
+            imagePath = app.config['UPLOAD_FOLDER'] + '/' + filename
+            img = Image.open(imagePath)
             
             width = img.size[0]
             height = img.size[1]
             pdll = ctypes.CDLL("./wuxuef.so")
             pdll.getShape.restype = ctypes.POINTER(ctypes.c_double * 136)
             points = []
-            points = pdll.getShape("input.jpg", "1").contents
+            
+            points = pdll.getShape(imagePath, "1").contents
             print (len(points))
             print points[0:136]
             pointX = []     
             pointY = []
                          
             for i in range(0, 68):
-                pointX[i] = points[i * 2]
-                pointY[i] = points[i * 2 + 1]          
+                pointX.append(points[i * 2])
+                pointY.append(points[i * 2 + 1])          
 
             return jsonify(path = filename, 
                             width = img.size[0], 
@@ -66,3 +54,15 @@ def index():
             
     return render_template('upload.html')
     
+
+@app.route('/age', methods=['POST'])
+def age():
+    if request.method == 'POST':
+        imgagePath = request.values['image']
+        curAge = request.values['curAge']
+        forecastAge = request.values['forecastAge']
+                
+        pdll = ctypes.CDLL("./wuxuef.so")
+        
+
+        return jsonify()

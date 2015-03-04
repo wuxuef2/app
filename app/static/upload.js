@@ -1,5 +1,7 @@
 $(function() {
 	var agingOption = {};
+	var offsetTop = 0;
+	var offsetLeft = 0;
 	
 	$("#showArea").hide();
 	var url = location.href + "/upload";
@@ -13,10 +15,11 @@ $(function() {
 		agingOption.pointX = json.pointX;
 		agingOption.pointY = json.pointY;
 		
-		var html = [];
 		var obj = $("#imgArea");
-		var offsetTop = obj.offset().top;
-		var offsetLeft = obj.offset().left;
+		offsetTop = obj.offset().top;
+		offsetLeft = obj.offset().left;
+		
+		var html = [];		
 		var css = {
 			width: json.width,
 			height: json.height
@@ -26,7 +29,8 @@ $(function() {
 		for (var i = 0; i < json.pointSize; i++) {
 			var tmpLeft = offsetLeft + json.pointX[i];
 			var tmpTop = offsetTop + json.pointY[i];			
-			html.push('<a class="blackPoint" y="' + json.pointY[i] + '" x="' + json.pointX[i] + '" index="' + i + '" href="#" style="left:' + tmpLeft + 'px; top:' + tmpTop + 'px;"></a>');
+			html.push('<a class="blackPoint" y="' + json.pointY[i] + '" x="' + json.pointX[i] + '" index="' + i 
+				+ '" href="#" style="left:' + tmpLeft + 'px; top:' + tmpTop + 'px;"></a>');
 		}
 		html = html.join("");		
 		obj.append(html);
@@ -45,8 +49,28 @@ $(function() {
 	$("#Aging").on("click", function(){
 		agingOption.curAging = $("#curAge").val();
 		agingOption.forecastAge = $("#forecastAge").val();
-		$.post("", agingOption, function() {
-			
+		var pointX = [];
+		var pointY = [];
+		$(".blackPoint").each(function(){
+			var i = $(this).attr("index");
+			pointX[i] = $(this).position().left - offsetLeft;
+			pointY[i] = $(this).position().top - offsetTop;
 		});
+		
+		var points = [];
+		var index = 0;
+		for (var i = 0; i < pointX.length; i++) {
+			points[index] = pointX[i];
+			index++;
+			points[index] = pointY[i];
+			index++;
+		}
+		agingOption.image = $("#uploadFace").attr("src");
+		agingOption.points = points.join(" ");		
+		$.post("/age", agingOption, function() {
+			alert("good!");
+		});
+		
+		return false;
 	});
 });
