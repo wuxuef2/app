@@ -8,6 +8,7 @@ from werkzeug import secure_filename
 import random
 from PIL import Image
 import ctypes
+import time
 
 # index view function suppressed for brevity
 
@@ -57,12 +58,19 @@ def index():
 
 @app.route('/age', methods=['POST'])
 def age():
-    if request.method == 'POST':
-        imgagePath = request.values['image']
-        curAge = request.values['curAge']
-        forecastAge = request.values['forecastAge']
-                
-        pdll = ctypes.CDLL("./wuxuef.so")
-        
-
-        return jsonify()
+    imagePath = request.form['image']
+    curAge = request.form['curAging']
+    forecastAge = request.form['forecastAge']
+    points = request.form['points']
+     
+    pdll = ctypes.CDLL("./wuxuef.so")
+    pdll.fit.argtypes = [ctypes.c_char_p, 
+                         ctypes.c_char_p, 
+                         ctypes.c_char_p, 
+                         ctypes.c_char_p, 
+                         ctypes.c_int]
+    
+    image = app.config['UPLOAD_FOLDER'] + '/' + imagePath
+    print image
+    code = pdll.fit(image, curAge, forecastAge, points, 136)
+    return jsonify(code = code)

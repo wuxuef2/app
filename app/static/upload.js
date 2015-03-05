@@ -65,10 +65,13 @@ $(function() {
 			points[index] = pointY[i];
 			index++;
 		}
-		agingOption.image = $("#uploadFace").attr("src");
+		
+		var str = $("#uploadFace").attr("src");
+		index = str.lastIndexOf("/") + 1;
+		agingOption.image = str.substr(index);
 		agingOption.points = points.join(" ");		
-		$.post("/age", agingOption, function() {
-			alert("good!");
+		$.post("/age", agingOption, function(data) {
+			alert(data.code);
 		});
 		
 		return false;
