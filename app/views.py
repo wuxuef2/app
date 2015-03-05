@@ -28,6 +28,12 @@ def index():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             imagePath = app.config['UPLOAD_FOLDER'] + '/' + filename
+            ticks = repr(time.time())
+            
+            
+            os.renames(imagePath, app.config['UPLOAD_FOLDER'] + '/' + ticks + filename)
+            filename = ticks + filename
+            imagePath = app.config['UPLOAD_FOLDER'] + '/' + filename
             img = Image.open(imagePath)
             
             width = img.size[0]
@@ -37,8 +43,8 @@ def index():
             points = []
             
             points = pdll.getShape(imagePath, "1").contents
-            print (len(points))
-            print points[0:136]
+            #print (len(points))
+            #print points[0:136]
             pointX = []     
             pointY = []
                          
@@ -71,6 +77,7 @@ def age():
                          ctypes.c_int]
     
     image = app.config['UPLOAD_FOLDER'] + '/' + imagePath
-    print image
-    code = pdll.fit(image, curAge, forecastAge, points, 136)
-    return jsonify(code = code)
+    newImage = 'result_' + imagePath
+    
+    code = pdll.fit(image, curAge, forecastAge, points, 136, newImage)
+    return jsonify(code = code, newImage = newImage)

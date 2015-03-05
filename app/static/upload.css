@@ -6,3 +6,11 @@
 	width: 7px;
 	position: absolute;
 }
+
+.hidden {
+	display: none;
+}
+
+.clear {
+	clear: both;
+}

@@ -34,7 +34,7 @@ $(function() {
 		}
 		html = html.join("");		
 		obj.append(html);
-		
+		$("#newFace").hide();
 		$(".blackPoint").draggable({
 			containment: "parent",
 		  	cursor: "crosshair",
@@ -71,7 +71,10 @@ $(function() {
 		agingOption.image = str.substr(index);
 		agingOption.points = points.join(" ");		
 		$.post("/age", agingOption, function(data) {
-			alert(data.code);
+			if (data.code === 0) {
+				$("#newFace").attr("src", imgPath + data.newImage);
+				$("#newFace").show();
+			}
 		});
 		
 		return false;
