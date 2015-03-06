@@ -6,7 +6,7 @@ from flask import Flask, request, redirect, url_for
 from flask import json, jsonify
 from werkzeug import secure_filename
 import random
-from PIL import Image
+import Image
 import ctypes
 import time
 
