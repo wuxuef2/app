@@ -7,6 +7,19 @@
 	position: absolute;
 }
 
+.agingFace {
+	background: #e0e3e5;
+	float: left;
+	padding: 15px 10px 10px 10px;
+	margin-bottom: 30px;
+	border-left: 5px white solid;
+	color: gray;
+}
+
+.agingFace img {
+	margin-bottom: 4px;
+}
+
 .hidden {
 	display: none;
 }
